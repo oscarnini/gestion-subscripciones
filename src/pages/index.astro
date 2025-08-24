@@ -3,21 +3,20 @@ import Layout from "../layouts/Layout.astro";
 
 import AddPlataform from "@components/add_plataform.astro";
 import Subscription from "@components/subscription.astro";
-import Membresias from "@components/membresias.astro";
+import Totals from "@components/totals.astro";
 import Mensualidad from "@components/mensualidad.astro";
 ---
 
 <Layout
 	title="Pagina que te ayudara a gestionar tus subscripciones"
 	description="Pagina que te ayudara a gestionar tus subscripciones">
-
 	<main class="px-4 md:px-20 lg:px-40 py-10">
-		<section class="flex gap-4 justify-around">
+		<section class="flex gap-y-10 md:gap-4 justify-around flex-col md:flex-row">
 			<AddPlataform />
-			 <Membresias />
-			 <Mensualidad />
+			<Totals />
+			<!-- <Mensualidad /> -->
 		</section>
 
-		<Subscription />
+		<Subscription id="tb-subscriptions"/>
 	</main>
 </Layout>

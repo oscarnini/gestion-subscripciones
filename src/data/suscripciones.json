@@ -13,18 +13,18 @@
                     "Url": "https://www.netflix.com/",
                     "Plans": [
                         {
-                            "Name": "Basico",
-                            "Price": 159.99,
-                            "Monthly ": 1
-                        },
-                        {
-                            "Name": "Medium",
-                            "Price": 249.99,
+                            "Name": "Basico with ads",
+                            "Price": 7.99,
                             "Monthly": 1
                         },
                         {
-                            "Name": "Premium",
-                            "Price": 299.99,
+                            "Name": "standard (1080p no ads)",
+                            "Price": 17.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium 4k + HDR",
+                            "Price": 24.99,
                             "Monthly": 1
                         }
                     ]
@@ -36,13 +36,13 @@
                     "Url": "https://www.primevideo.com/",
                     "Plans": [
                         {
-                            "Name": "Standalone Subscription",
-                            "Price": 8.99,
+                            "Name": "Prime Access",
+                            "Price": 6.99,
                             "Monthly": 1
                         },
                         {
                             "Name": "Amazon Prime Membership",
-                            "Price": 14.99,
+                            "Price": 7.49,
                             "Monthly": 1
                         },
                         {
@@ -69,7 +69,7 @@
                             "Monthly": 1
                         },
                         {
-                            "Name": "Premium",
+                            "Name": "Premium (yearly)",
                             "Price": 15.99,
                             "Monthly": 12
                         }
@@ -323,6 +323,7 @@
                     "Id": 100,
                     "Name": "Netflix",
                     "Category": "Streaming",
+                    "Url": "https://www.netflix.com/mx/",
                     "Plans": [
                         {
                             "Name": "Basico",
@@ -352,6 +353,7 @@
                     "Id": 100,
                     "Name": "Netflix",
                     "Category": "Streaming",
+                    "Url": "https://www.netflix.com/es/",
                     "Plans": [
                         {
                             "Name": "Basico",

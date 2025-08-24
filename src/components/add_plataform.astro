@@ -4,7 +4,7 @@ import subscriptionJSon from "../data/suscripciones.json";
 const countries = subscriptionJSon.Countries;
 ---
 
-<div class="flex flex-col flex-1 gap-4 rounded-lg bg-white p-4 shadow-md dark:bg-slate-800">
+<div class="flex flex-col w-full md:w-75 md:flex-1 gap-2 md:gap-4 rounded-lg bg-white p-4 shadow-md dark:bg-slate-800">
     <label class="text-center uppercase text-base">País</label>
     <select id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
         <option value="" disabled selected hidden>Seleciona un país</option>
@@ -31,10 +31,12 @@ const countries = subscriptionJSon.Countries;
         <option value="" disabled selected hidden>Seleciona tu suscription</option>
     </select>
 
-    <div class="grid content-center items-center h-full justify-center">
-        <button 
+    <div class="grid content-center items-center h-full pt-2 justify-center">
+        <a href="#tb-subscriptions" class="no-underline w-full">
+            <button id="btnMembresia"
         class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
         Agregar Suscripción</button>
+        </a>
     </div>
 </div>
 
@@ -45,11 +47,6 @@ const countries = subscriptionJSon.Countries;
     // COUNTRY SELECTOR //
     document.getElementById('country')?.addEventListener('change', (event) => {
         resetOptions('category');
-
-        document.getElementById('category').length = 1; // Clear previous options
-        document.getElementById('platform').length = 1; // Clear previous options
-        document.getElementById('suscription').length = 1; // Clear previous options
-        
         const country = event.target.value;
         const categories = plataformasJSON.Countries.find(c => c.Code === country)?.Plataforms || [];
 
@@ -104,6 +101,95 @@ const countries = subscriptionJSon.Countries;
         });
         disabledOptions('suscription');
     });
+
+    document.querySelector('#btnMembresia')?.addEventListener('click', () => {
+        const code = document.getElementById('country').value;
+        const category = document.getElementById('category').value;
+        const platformId = document.getElementById('platform').value;
+        const suscription = document.getElementById('suscription').value.split('-')[1];
+
+        if (!code || !category || !platformId || !suscription) {
+            alert('Por favor, completa todos los campos antes de agregar la suscripción.');
+            return;
+        }
+        const country = plataformasJSON.Countries.find(c => c.Code === code);
+
+        const table = document.querySelectorAll('tbody')[0];
+        const row = table.insertRow();
+        row.className = "bg-white border-b dark:bg-slate-800 dark:border-gray-700 border-gray-200";
+        const cellId = row.insertCell(0);
+        const cellService = row.insertCell(1);
+        const cellType = row.insertCell(2);
+        const cellCountry = row.insertCell(3);
+        const cellCatalog = row.insertCell(4);
+        const cellPayment = row.insertCell(5);
+        const cellMonths = row.insertCell(6);
+        const cellLink = row.insertCell(7);
+        const cellActions = row.insertCell(8);
+
+        cellId.className = "px-6 py-4 hidden";
+        cellService.className = "px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white";
+        cellType.className = "px-6 py-4";
+        cellCountry.className = "px-6 py-4";
+        cellCatalog.className = "px-6 py-4";
+        cellPayment.className = "px-6 py-4";
+        cellMonths.className = "px-6 py-4";
+        cellLink.className = "px-6 py-4";
+        cellActions.className = "flex justify-center items-center px-6 py-4";
+
+        cellId.textContent = platformId
+        cellService.textContent = country?.Plataforms.find(p => p.Id == platformId)?.Name || '';
+        cellType.textContent = suscription;
+        cellCountry.textContent = country?.Name || '';
+        cellCatalog.textContent = category;
+        cellPayment.textContent = '$' + country?.Plataforms.find(p => p.Id == platformId)?.Plans.find(pl => pl.Name === suscription)?.Price.toString() || '';
+        cellMonths.textContent = country?.Plataforms.find(p => p.Id == platformId)?.Plans.find(pl => pl.Name === suscription)?.Monthly?.toString() || '';
+        cellLink.innerHTML = `<a href="${country?.Plataforms.find(p => p.Id == platformId)?.Url || '#'}" target="_blank" class="no-underline">
+                                <button type="button" class="text-gray-900 bg-white border focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-gray-800 dark:text-white dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700">Cancelar</button>
+                              </a>`;
+        cellActions.innerHTML = `<button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-3 py-2 me-2 mb-2 dark:bg-red-600/55 dark:hover:bg-red-700 dark:focus:ring-red-900">Eliminar</button>`;
+
+        cellActions.querySelector('button')?.addEventListener('click', () => {
+            table.deleteRow(row.rowIndex-1);
+            totalMembresias();
+            totalMensualidad();
+        });
+
+        totalMembresias();
+        totalMensualidad();
+    });
+
+    function totalMembresias() {
+        const table = document.querySelectorAll('tbody')[0];
+        const total = table.rows.length;
+        document.querySelector('.flex-1 span')!.textContent = total.toString();
+    }
+
+    function totalMensualidad() {
+        const table = document.querySelectorAll('tbody')[0];
+        let total = 0;
+        table.querySelectorAll('tr').forEach(row => {
+            const paymentCell = row.cells[5];
+            const MonthlyCell = row.cells[6];
+            const payment = parseFloat(paymentCell.textContent?.replace('$',' ') || '0');
+            const months = parseInt(MonthlyCell.textContent || '1');
+            total += payment / months;
+        })
+        document.querySelector('#totalMontly')!.textContent = `$${total.toFixed(2)}`;
+        totalYearly(table);
+    }
+
+    function totalYearly(table) {
+        let totalYearly = 0;
+        table.querySelectorAll('tr').forEach(row =>{
+            const paymentCell = row.cells[5];
+            const payment = parseFloat(paymentCell.textContent?.replace('$',' ') || '0');
+            const MonthlyCell = row.cells[6];
+            const months = parseInt(MonthlyCell.textContent || '1');
+            totalYearly += (payment / months) * 12;
+        })
+        document.querySelector('#totalYearly')!.textContent = `$${totalYearly.toFixed(2)}`;
+    }
 
     function resetOptions(selectId) {
         const selectElement = document.getElementById(selectId);
