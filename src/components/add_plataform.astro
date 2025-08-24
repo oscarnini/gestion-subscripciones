@@ -1,0 +1,120 @@
+---
+import subscriptionJSon from "../data/suscripciones.json";
+
+const countries = subscriptionJSon.Countries;
+---
+
+<div class="flex flex-col flex-1 gap-4 rounded-lg bg-white p-4 shadow-md dark:bg-slate-800">
+    <label class="text-center uppercase text-base">País</label>
+    <select id="country" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="" disabled selected hidden>Seleciona un país</option>
+        {
+            countries.map((country) => (
+                <option value={country.Code}>{country.Name}</option>
+            ))
+        }
+    </select>
+
+    <label class="text-center uppercase text-base">Categoría</label>
+    <select id="category"
+        class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="category" disabled selected hidden>Seleciona una categoría</option>
+    </select>
+
+    <label class="text-center uppercase text-base">Plataformas</label>
+    <select id="platform" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="" disabled selected hidden>Seleciona una plataforma</option>
+    </select>
+
+    <label class="text-center uppercase text-base">Tipo Suscription</label>
+    <select id="suscription" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+        <option value="" disabled selected hidden>Seleciona tu suscription</option>
+    </select>
+
+    <div class="grid content-center items-center h-full justify-center">
+        <button 
+        class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+        Agregar Suscripción</button>
+    </div>
+</div>
+
+
+<script>
+    import plataformasJSON from '../data/suscripciones.json' assert { type: 'json' };
+
+    // COUNTRY SELECTOR //
+    document.getElementById('country')?.addEventListener('change', (event) => {
+        resetOptions('category');
+
+        document.getElementById('category').length = 1; // Clear previous options
+        document.getElementById('platform').length = 1; // Clear previous options
+        document.getElementById('suscription').length = 1; // Clear previous options
+        
+        const country = event.target.value;
+        const categories = plataformasJSON.Countries.find(c => c.Code === country)?.Plataforms || [];
+
+        const categorySelect = document.getElementById('category');
+
+        [...new Set(categories.map(cat => cat.Category))].forEach(category => {
+            const option = document.createElement('option');
+            option.value = category;
+            option.text = category;
+            categorySelect.appendChild(option);
+        });
+
+        disabledOptions('category');
+    });
+
+    // CATEGORY SELECTOR //
+    document.getElementById('category')?.addEventListener('change', (event) => {
+        resetOptions('platform');
+
+        const country = document.getElementById('country').value;
+        const category = event.target.value;
+        const platforms = plataformasJSON.Countries.find(c => c.Code === country)?.Plataforms || [];
+
+        const platformSelect = document.getElementById('platform');
+
+        platforms.filter(p => p.Category === category).forEach(platform => {
+            const option = document.createElement('option');
+            option.value = platform.Id;
+            option.text = platform.Name;
+            platformSelect.appendChild(option);
+        });
+
+        disabledOptions('platform');
+    });
+
+    // PLATFORM SELECTOR //
+    document.getElementById('platform')?.addEventListener('change', (event) => {
+        resetOptions('suscription');
+
+        const country = document.getElementById('country').value;
+        const plataformId = event.target.value;
+        const plataforms = plataformasJSON.Countries.find(c => c.Code === country)?.Plataforms || [];
+
+        plataforms.filter(p => p.Id == plataformId).forEach(plataform => {
+            plataform.Plans.forEach(plant => {
+                const subscripcionesSelect = document.getElementById('suscription');
+                const option = document.createElement('option');
+                option.value = `${plataformId}-${plant.Name}`;
+                option.text = plant.Name;
+                subscripcionesSelect?.appendChild(option);
+            });
+        });
+        disabledOptions('suscription');
+    });
+
+    function resetOptions(selectId) {
+        const selectElement = document.getElementById(selectId);
+        selectElement.querySelector('option')?.removeAttribute("hidden");
+        selectElement.querySelector('option')?.removeAttribute("disabled");
+        selectElement.length = 1;
+    }
+
+    function disabledOptions(selectId) {
+        const selectElement = document.getElementById(selectId);
+        selectElement.querySelector('option')?.setAttribute("hidden", "")
+        selectElement.querySelector('option')?.setAttribute("disabled", "");
+    }
+</script>

@@ -1,0 +1,376 @@
+{
+    "Last_update": "2025-08-15",
+    "Countries": [
+        {
+            "Code": "US",
+            "Name": "United States",
+            "Currency ": "USD",
+            "Plataforms": [
+                {
+                    "Id": 1,
+                    "Name": "Netflix",
+                    "Category": "Streaming",
+                    "Url": "https://www.netflix.com/",
+                    "Plans": [
+                        {
+                            "Name": "Basico",
+                            "Price": 159.99,
+                            "Monthly ": 1
+                        },
+                        {
+                            "Name": "Medium",
+                            "Price": 249.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 299.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 2,
+                    "Name": "Amazon Prime Video",
+                    "Category": "Streaming",
+                    "Url": "https://www.primevideo.com/",
+                    "Plans": [
+                        {
+                            "Name": "Standalone Subscription",
+                            "Price": 8.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Amazon Prime Membership",
+                            "Price": 14.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Amazon Prime membership (annual)",
+                            "Price": 139.00,
+                            "Monthly": 12
+                        }
+                    ]
+                },
+                {
+                    "Id":3,
+                    "Name": "Disney+",
+                    "Category": "Streaming",
+                    "Url": "https://www.disneyplus.com/",
+                    "Plans": [
+                        {
+                            "Name": "Basic",
+                            "Price": 9.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 15.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 15.99,
+                            "Monthly": 12
+                        }
+                    ]
+                },
+                {
+                    "Id": 4,
+                    "Name": "Hulu",
+                    "Category": "Streaming",
+                    "Url": "https://www.hulu.com/welcome",
+                    "Plans": [
+                        {
+                            "Name": "Basic (ad-supported)",
+                            "Price": 9.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "No Ads",
+                            "Price": 18.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 5,
+                    "Name": "HBO Max",
+                    "Category": "Streaming",
+                    "Url": "https://www.hbomax.com/",
+                    "Plans": [
+                        {
+                            "Name": "Basic with Ads",
+                            "Price": 9.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Basic with Ads (yearly)",
+                            "Price": 99.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Standard",
+                            "Price": 16.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Standard (yearly)",
+                            "Price": 169.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 20.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium (yearly)",
+                            "Price": 209.99,
+                            "Monthly": 12
+                        }
+                    ]
+                },
+                {
+                    "Id": 6,
+                    "Name": "Crunchyroll",
+                    "Category": "Streaming",
+                    "Url": "https://www.crunchyroll.com/",
+                    "Plans": [
+                        {
+                            "Name": "Fan",
+                            "Price": 7.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Mega Fan",
+                            "Price": 11.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Ultimate Fan",
+                            "Price": 15.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 7,
+                    "Name": "YouTube Tv",
+                    "Category": "Streaming",
+                    "Url": "https://tv.youtube.com/welcome/",
+                    "Plans": [
+                        {
+                            "Name": "Basic",
+                            "Price": 82.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 8,
+                    "Name": "Spotify",
+                    "Category": "Music",
+                    "Url": "https://www.spotify.com/us/premium/",
+                    "Plans": [
+                        {
+                            "Name": "Individual",
+                            "Price": 11.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Duo",
+                            "Price": 16.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Family",
+                            "Price": 19.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Student",
+                            "Price": 5.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 9,
+                    "Name": "Apple Music",
+                    "Category": "Music",
+                    "Url": "https://www.apple.com/apple-music/",
+                    "Plans": [
+                        {
+                            "Name": "Individual",
+                            "Price": 10.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Family",
+                            "Price": 16.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Student",
+                            "Price": 5.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 10,
+                    "Name": "Youtube Music premium",
+                    "Category": "Music",
+                    "Url": "https://www.youtube.com/premium",
+                    "Plans": [
+                        {
+                            "Name": "Individual",
+                            "Price": 13.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Individual (yearly)",
+                            "Price": 139.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Family",
+                            "Price": 22.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Student",
+                            "Price": 7.99,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 11,
+                    "Name": "Tidal",
+                    "Category": "Music",
+                    "Url": "https://tidal.com/",
+                    "Plans": [
+                        {
+                            "Name": "Individual",
+                            "Price": 10.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Family",
+                            "Price": 16.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Student",
+                            "Price": 5.49,
+                            "Monthly": 1
+                        }
+                    ]
+                },
+                {
+                    "Id": 12,
+                    "Name": "Deezer",
+                    "Category": "Music",
+                    "Url": "https://www.deezer.com/",
+                    "Plans": [
+                        {
+                            "Name": "Premium",
+                            "Price": 11.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium (yearly)",
+                            "Price": 107.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Dou",
+                            "Price": 15.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Dou (yearly)",
+                            "Price": 174.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Family",
+                            "Price": 19.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Family (yearly)",
+                            "Price": 218.99,
+                            "Monthly": 12
+                        },
+                        {
+                            "Name": "Student",
+                            "Price": 5.99,
+                            "Monthly": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Code": "MX",
+            "Name": "Mexico",
+            "Currency": "MXN",
+            "Plataforms": [
+                {
+                    "Id": 100,
+                    "Name": "Netflix",
+                    "Category": "Streaming",
+                    "Plans": [
+                        {
+                            "Name": "Basico",
+                            "Price": 200,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Medium",
+                            "Price": 4000,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 5000,
+                            "Monthly": 1
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "Code": "SP",
+            "Name": "España",
+            "Currency": "EUR",
+            "Plataforms": [
+                {
+                    "Id": 100,
+                    "Name": "Netflix",
+                    "Category": "Streaming",
+                    "Plans": [
+                        {
+                            "Name": "Basico",
+                            "Price": 9.99,
+                            "Monthly": 1
+                        },
+                        {
+                            "Name": "Medium",
+                            "Price": 15.99,
+                            "Monthly": 3
+                        },
+                        {
+                            "Name": "Premium",
+                            "Price": 22.99,
+                            "Monthly": 12
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
